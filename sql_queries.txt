@@ -1,0 +1,40 @@
+1. User-wise, Product-wise Ordering Quantity with Total Item Value
+
+SELECT 
+    u.name AS user_name, 
+    p.name AS product_name, 
+    SUM(oi.quantity) AS total_quantity, 
+    SUM(oi.quantity * oi.price) AS total_value
+FROM 
+    Users u
+JOIN Orders o ON u.id = o.userId
+JOIN OrderItems oi ON o.id = oi.orderId
+JOIN Products p ON oi.productId = p.id
+GROUP BY u.name, p.name;
+
+
+ 2. Weekly Orders Analysis for the Last Quarter of 2024
+
+SELECT 
+    YEAR(createdAt) AS year, 
+    WEEK(createdAt) AS week, 
+    COUNT(id) AS order_count
+FROM 
+    Orders
+WHERE 
+    createdAt BETWEEN '2024-10-01' AND '2024-12-31'
+GROUP BY 
+    YEAR(createdAt), WEEK(createdAt);
+
+
+
+ 3. Product Name and No. of Orders (Exclude Products with Fewer than 5 Orders)
+
+SELECT 
+    p.name AS product_name, 
+    COUNT(oi.orderId) AS order_count
+FROM 
+    Products p
+JOIN OrderItems oi ON p.id = oi.productId
+GROUP BY p.name
+HAVING COUNT(oi.orderId) >= 5;
