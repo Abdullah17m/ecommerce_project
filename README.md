@@ -8,50 +8,38 @@ This project is a backend application for an e-commerce platform. It provides fu
 
 ### **User Features**
 - User Registration and Login
-- Update Profile Information
+- View Profile Information
 - View Orders and Order Details
 - Add Items to Cart
 - Place Orders
 
-### **Admin Features**
-- Manage Users (Add, Edit, Enable/Disable)
-- Manage Products (Add, Update, Delete)
-- View All Orders
+
 
 ### **Order Management**
 - Checkout: Create an order
 - Place Order: Process cart items, update stock, and clear the cart
 - View Orders: Retrieve user-specific order history
-- Weekly Sales Analysis for the last quarter of 2024
-- Product-wise Order Analysis
+
 
 ---
 
 ## **API Endpoints**
 
 ### **User Management**
-- `POST /api/users/register`: Register a new user
-- `POST /api/users/login`: Authenticate a user
-- `PUT /api/users/profile`: Update user profile
+- `POST /users/register`: Register a new user
+- `POST /users/login`: Authenticate a user
+- `GET /users/profile`: View user profile
 
 ### **Cart Management**
-- `GET /api/cart`: View items in the cart
-- `POST /api/cart/add`: Add an item to the cart
-- `DELETE /api/cart/remove`: Remove an item from the cart
+- `GET /cart/view`: View items in the cart
+- `POST /cart/add`: Add an item to the cart
+
 
 ### **Order Management**
-- `POST /api/orders/checkout`: Create an order
-- `POST /api/orders/place`: Process an order (reduce stock, clear cart)
-- `GET /api/orders`: View all user orders
+- `POST /orders/checkout`: Create an order
+- `POST /orders/place`: Process an order (reduce stock, clear cart)
+- `GET /orders/view`: View all user orders
 
-### **Admin Management**
-- `GET /api/admin/users`: View all users
-- `POST /api/admin/users`: Add a new user
-- `PUT /api/admin/users/:id`: Update user status (enable/disable)
-- `GET /api/admin/products`: View all products
-- `POST /api/admin/products`: Add a product
-- `PUT /api/admin/products/:id`: Update product details
-- `DELETE /api/admin/products/:id`: Delete a product
 
 ---
 
@@ -59,16 +47,16 @@ This project is a backend application for an e-commerce platform. It provides fu
 
 ### Tables:
 1. **Users**
-    - `id`, `name`, `email`, `password`, `role`, `status`, `createdAt`
+    - `id`, `name`, `email`, `password`
 
 2. **Products**
-    - `id`, `name`, `price`, `stock`, `description`, `createdAt`
+    - `id`, `name`, `price`, `stock`
 
 3. **Cart**
-    - `id`, `userId`, `productId`, `quantity`, `createdAt`
+    - `id`, `userId`, `productId`, `quantity`
 
 4. **Orders**
-    - `id`, `userId`, `totalAmount`, `status`, `createdAt`
+    - `id`, `userId`, `totalAmount`,  `createdAt`
 
 5. **OrderItems**
     - `id`, `orderId`, `productId`, `quantity`, `price`
@@ -94,7 +82,7 @@ This project is a backend application for an e-commerce platform. It provides fu
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/e-commerce-platform.git
+    git clone https://github.com/Abdullah17m/ecommerce_project
     cd e-commerce-platform
     ```
 
@@ -104,14 +92,10 @@ This project is a backend application for an e-commerce platform. It provides fu
     ```
 
 3. Configure the database:
-    - Update `config/database.js` with your database credentials.
+    - Update `config/db.js` with your database credentials.
 
-4. Run database migrations:
-    ```bash
-    npx sequelize-cli db:migrate
-    ```
 
-5. Start the application:
+4. Start the application:
     ```bash
     npm start
     ```
