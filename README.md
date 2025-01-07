@@ -97,7 +97,7 @@ This project is a backend application for an e-commerce platform. It provides fu
 
 4. Start the application:
     ```bash
-    npm app.js
+    node app.js
     ```
 
 ---
